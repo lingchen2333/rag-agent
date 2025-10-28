@@ -21,17 +21,19 @@ text_splitter = RecursiveCharacterTextSplitter.from_tiktoken_encoder(
 
 doc_splits = text_splitter.split_documents(docs_list)
 
-# vectorstore = Chroma.from_documents(
-#     documents=doc_splits,
-#     collection_name="rag-chroma",
-#     embedding=OpenAIEmbeddings(),
-#     persist_directory="./.chroma"
-# )
+vectorstore = Chroma.from_documents(
+    documents=doc_splits,
+    collection_name="rag-chroma",
+    embedding=OpenAIEmbeddings(),
+    persist_directory="./.chroma"
+)
+
+print("number of stored vectors:", vectorstore._collection.count())
 
 retriever = Chroma(
     collection_name="rag-chroma",
     persist_directory="./.chroma",
-    embedding_function=OpenAIEmbeddings()
+    embedding_function=OpenAIEmbeddings(),
 ).as_retriever()
 
 print("hello")
