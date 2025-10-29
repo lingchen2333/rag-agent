@@ -1,8 +1,10 @@
+from typing import Any, Dict
+
 from graph.chains import retriever_grader
 from graph.state import GraphState
 
 
-def grade_documents(state: GraphState):
+def grade_documents(state: GraphState) -> Dict[str, Any]:
     """
     Determine whether the retrieved documents are relevant to the question.
     If any document is not relevant, we will set a flag to run web search
