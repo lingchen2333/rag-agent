@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableSequence
 from langchain_openai import ChatOpenAI
-from openai import BaseModel
-from pydantic.v1 import Field
+from pydantic import BaseModel, Field
+
 
 load_dotenv()
 
@@ -13,7 +13,7 @@ class GradeAnswer(BaseModel):
     """binary score for if generated response answers the question"""
 
     binary_score: bool = Field(
-        description="answer addresses the question, 'yes' or 'no'",
+        description="answer addresses the question, 'yes' or 'no'."
     )
 
 structured_llm_grader = llm.with_structured_output(GradeAnswer)

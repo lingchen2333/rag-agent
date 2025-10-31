@@ -8,5 +8,5 @@ load_dotenv()
 
 if __name__ == '__main__':
     print(app.invoke(
-        input = {"question": "what is agent memory?"}
+        input = {"question": "how to forage mushroom?"}
     ))
